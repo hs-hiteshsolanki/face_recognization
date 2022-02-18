@@ -61,6 +61,7 @@ for file in glob.glob("*.jpg"):
         #write a name for check image
         cv2.putText(image, name, (left + 6, bottom - 6), font, 0.3, (255, 255, 255), 1)
 
+    #date time featch
     datetime1 = datetime.now()
     current_time = datetime1.strftime("%H_%M_%S")
 
