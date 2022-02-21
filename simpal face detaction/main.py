@@ -1,15 +1,13 @@
 import face_recognition as fr
 import cv2
 import numpy as np
-import glob,os
-from datetime import datetime,date
-from webcame import web,main
-
-
+import glob, os
+from datetime import datetime, date
+from webcame import web, main
 
 today = date.today()
 
-datetime1=datetime.now()
+datetime1 = datetime.now()
 current_time = datetime1.strftime("%H_%M_%S")
 
 path = "./train/"
@@ -29,7 +27,7 @@ for _ in images:
 print(known_names)
 
 os.chdir("test")
-flag=None
+flag = None
 if web.isOpened():
     print("Camera detected")
     main.Detection()
@@ -38,7 +36,7 @@ else:
     for file in glob.glob("*.jpg"):
         print(file)
 
-        #test_image = "./test/test.jpg"
+        # test_image = "./test/test.jpg"
         image = cv2.imread(file)
         # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -48,14 +46,14 @@ else:
         for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
             matches = fr.compare_faces(known_name_encodings, face_encoding)
             name = ""
-            #check to name in image for name
+            # check to name in image for name
             face_distances = fr.face_distance(known_name_encodings, face_encoding)
             best_match = np.argmin(face_distances)
 
             if matches[best_match]:
                 name = known_names[best_match]
 
-            im=cv2.rectangle(image, (left, top), (right, bottom), (0, 0, 255), 2)
+            im = cv2.rectangle(image, (left, top), (right, bottom), (0, 0, 255), 2)
             if im.all():
                 flag = False
             else:
@@ -64,12 +62,13 @@ else:
             # border hight and with
             cv2.rectangle(image, (left, bottom - 15), (right, bottom), (0, 0, 255), cv2.FILLED)
             font = cv2.FONT_HERSHEY_DUPLEX
-            #write a name for check image
+            # write a name for check image
             cv2.putText(image, name, (left + 6, bottom - 6), font, 0.3, (255, 255, 255), 1)
 
-        #date time featch
+        # date time featch
         datetime1 = datetime.now()
         current_time = datetime1.strftime("%H_%M_%S")
+
 
         def Create_Dir():
             try:
@@ -82,7 +81,7 @@ else:
         Create_Dir()
         if flag:
 
-            final_path ="{}/{}.jpg".format(str(today),str(current_time))
+            final_path = "{}/{}.jpg".format(str(today), str(current_time))
             print(final_path)
             cv2.imwrite(final_path, image)
             cv2.waitKey(5000)

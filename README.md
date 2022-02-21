@@ -9,3 +9,7 @@ install dlib
 
 face recognition module
   pip install face-recognition
+
+open cv2 module
+  pip install opencv-python
+  import cv2
