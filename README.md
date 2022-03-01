@@ -13,3 +13,6 @@ face recognition module
 open cv2 module
   pip install opencv-python
   import cv2
+
+opencv-contrib-python
+  pip install opencv-contrib-python
