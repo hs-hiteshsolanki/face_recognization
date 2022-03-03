@@ -16,6 +16,7 @@ def isOpened():
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3);
 
         cv2.imshow('Face Detector', frame);
+        #store image in file
         # imwrite("output.png", frame)
 
         key = cv2.waitKey(1);
