@@ -1,9 +1,13 @@
-import face_recognition as fr
-import cv2
-import numpy as np
-import glob, os
+import glob
+import os
 from datetime import datetime, date
-from webcame import web, main
+
+import cv2
+import face_recognition as fr
+import numpy as np
+
+# from webcame import web, main
+from webcame import webcheck
 
 today = date.today()
 
@@ -28,9 +32,14 @@ print(known_names)
 
 os.chdir("test")
 flag = None
-if web.isOpened():
+
+# if not
+# if web.isOpened():
+#     print("Camera detected")
+#     main.Detection()
+
+if webcheck.isOpened():
     print("Camera detected")
-    main.Detection()
 else:
     print("Camera not found")
     for file in glob.glob("*.jpg"):
