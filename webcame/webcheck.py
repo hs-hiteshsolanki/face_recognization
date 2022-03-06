@@ -1,29 +1,13 @@
 import cv2
 
 
-def isOpened():
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml');
+def check():
+    image = cv2.VideoCapture(0)
 
-    video = cv2.VideoCapture(0);
-
-    if not video.isOpened():
+    # Check if the webcam is opened correctly
+    if not image.isOpened():
         # raise IOError("Cannot open webcam")
         return False
-    while True:
-        check, frame = video.read()
-        faces = face_cascade.detectMultiScale(frame, scaleFactor=1.1, minNeighbors=5);
-        for x, y, w, h in faces:
-            frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3);
 
-        cv2.imshow('Face Detector', frame);
-        #store image in file
-        # imwrite("output.png", frame)
-
-        key = cv2.waitKey(1);
-
-        if key == ord('q'):
-            break;
-
-    video.release();
-    cv2.destroyAllWindows();
     return True
+

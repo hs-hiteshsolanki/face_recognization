@@ -6,7 +6,8 @@ import cv2
 import face_recognition as fr
 import numpy as np
 
-# from webcame import web, main
+import webcame.main
+from webcame import web, main
 from webcame import webcheck
 
 today = date.today()
@@ -38,8 +39,9 @@ flag = None
 #     print("Camera detected")
 #     main.Detection()
 
-if webcheck.isOpened():
+if webcheck.check():
     print("Camera detected")
+    webcame.main.Detection()
 else:
     print("Camera not found")
     for file in glob.glob("*.jpg"):

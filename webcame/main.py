@@ -20,3 +20,4 @@ def Detection():
 
     video.release();
     cv2.destroyAllWindows();
+Detection()
