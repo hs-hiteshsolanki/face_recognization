@@ -5,10 +5,8 @@ from datetime import datetime, date
 import cv2
 import face_recognition as fr
 import numpy as np
-
-import webcame.main
-from webcame import web, main
-from webcame import webcheck
+import webcame
+import webcheck
 
 today = date.today()
 
@@ -34,20 +32,14 @@ print(known_names)
 os.chdir("test")
 flag = None
 
-# if not
-# if web.isOpened():
-#     print("Camera detected")
-#     main.Detection()
-
 if webcheck.check():
     print("Camera detected")
-    webcame.main.Detection()
+    webcame.camera()
 else:
     print("Camera not found")
     for file in glob.glob("*.jpg"):
         print(file)
 
-        # test_image = "./test/test.jpg"
         image = cv2.imread(file)
         # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -80,7 +72,7 @@ else:
         datetime1 = datetime.now()
         current_time = datetime1.strftime("%H_%M_%S")
 
-
+        #create a folder
         def Create_Dir():
             try:
                 os.mkdir(str(today))
